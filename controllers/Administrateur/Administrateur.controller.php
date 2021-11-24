@@ -36,10 +36,10 @@ class AdministrateurController extends MainController
         if ($this->administrateurManager->verifLoginDisponible($newLogin)) {
             if ($this->administrateurManager->bdModificationAdminLoginUser($login, $newLogin)) {
 
-                $utilisateur = $this->administrateurManager->getUserAdminInformation($newLogin);
+                /*             $utilisateur = $this->administrateurManager->getUserAdminInformation($newLogin);
                 $_SESSION['profil']["login"] = $utilisateur['login'];
 
-                $_SESSION['profil']["role"] = $utilisateur['role'];
+                $_SESSION['profil']["role"] = $utilisateur['role']; */
 
                 $utilisateurs = $this->administrateurManager->getUtilisateurs();
                 $data_page = [
