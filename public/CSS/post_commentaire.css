@@ -1,0 +1,39 @@
+.post_commentaire .champ_com {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    width: 60vh;
+}
+
+.post_commentaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.post_commentaire .consigne {
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: bolder;
+    margin: 2rem;
+}
+
+.post_commentaire .champ_com {
+    padding: .625rem;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+.post_commentaire .btnValidCom {
+    margin: 0.5rem;
+    padding: .5rem;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}

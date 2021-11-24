@@ -1,0 +1,53 @@
+.container_post {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    align-content: center;
+    align-items: center;
+}
+
+.container_post .info_com {
+    height: 100%;
+    border-left: solid;
+    border-top: solid;
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    width: 40vw;
+    border-width: 0.1rem;
+}
+
+.switch_commentaire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.switch_commentaire p {
+    font-weight: bold;
+}
+
+.switch_commentaire .poster_com button {
+    padding: 1rem;
+    border-radius: 5%;
+    background-color: white;
+    border-width: 0.1rem;
+}
+
+.container_post_connecter {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.container_post_connecter .info_utilisateur_post {}
+
+.container_post_connecter .info_com {
+    height: 100%;
+    border-left: solid;
+    border-top: solid;
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    width: 40vw;
+    border-width: 0.1rem;
+}
