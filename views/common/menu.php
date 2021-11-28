@@ -33,7 +33,12 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item text-success" href="<?= URL; ?>administration/droits">Gérer les droits</a></li>
+              <li><a class="dropdown-item text-success" href="<?= URL; ?>administration/coms">Gérer les commentaires</a></li>
+
             </ul>
+
+
+
           </li>
         <?php endif; ?>
       </ul>

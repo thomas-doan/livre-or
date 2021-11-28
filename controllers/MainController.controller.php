@@ -10,6 +10,8 @@ abstract class MainController
         ob_start();
         require_once($view);
         $page_content = ob_get_clean();
+
+
         require_once($template);
     }
 

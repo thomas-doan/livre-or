@@ -189,4 +189,30 @@ class UtilisateurManager extends MainManager
         $stmt->closeCursor();
         return $estModifier;
     }
+
+    public function ajouter_like($id_com, $id_user)
+    {
+        $req = "INSERT INTO Intermediaire_like (fk_id_commentaires, fk_id_utilisateurs) VALUES (:fk_id_commentaires, :fk_id_utilisateurs)";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":fk_id_commentaires", $id_user, PDO::PARAM_STR);
+        $stmt->bindValue(":fk_id_utilisateurs", $id_com, PDO::PARAM_STR);
+        $stmt->execute();
+        $comDisponible = $stmt;
+        $stmt->closeCursor();
+        return $comDisponible;
+    }
+
+
+    public function check_like($fk_id_com, $fk_id_user)
+    {
+
+        $req = "SELECT * FROM intermediaire_like WHERE (fk_id_commentaires =: fk_id_commentaires) AND ()fk_id_utilisateurs =: fk_id_utilisateurs";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":fk_id_commentaires", $fk_id_com, PDO::PARAM_STR);
+        $stmt->bindValue(":fk_id_utilisateurs", $fk_id_user, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return count($resultat);
+    }
 }

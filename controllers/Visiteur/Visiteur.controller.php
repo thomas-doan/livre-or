@@ -28,16 +28,32 @@ class VisiteurController extends MainController
     public function livreOr()
     {
         $datas = $this->visiteurManager->getCommentaire();
+        $datas_de_likes = $this->visiteurManager->getLikes();
+        $check_de_likes = $this->visiteurManager->check_like();
         $data_page = [
             "page_description" => "Livre d'or",
             "page_title" => "Livre d'or",
+            "res_like" => $datas_de_likes,
             "total_commentaires" => $datas,
+            "check_likes" => $check_de_likes,
             "page_css" => ["main_home.css", "livreOr.css"],
             "view" => "views/Visiteur/livreOr.view.php",
             "template" => "views/common/template.php"
         ];
         $this->genererPage($data_page);
     }
+
+    /*     public function get_like()
+    {
+        $datas_de_likes = "";
+        $data_page1 = [
+            "res_like" => $datas_de_likes,
+            "page_css" => ["main_home.css", "livreOr.css"],
+            "view" => "views/Visiteur/livreOr.view.php",
+            "template" => "views/common/template.php"
+        ];
+        $this->genererPage($data_page1);
+    } */
 
 
     public function login()

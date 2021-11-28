@@ -57,7 +57,7 @@ class UtilisateurController extends MainController
     }
     public function validation_creerCompte($login, $prenom, $nom, $password, $mail)
     {
-        if (!empty($login)) {
+        if (isset($login)) {
             if ($this->utilisateurManager->verifLoginDisponible($login)) {
                 $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
                 $clef = rand(0, 9999);
@@ -203,6 +203,19 @@ class UtilisateurController extends MainController
         $this->genererPage($data_page);
     }
 
+    public function livreOrConnecte()
+    {
+        /*     $check = $this->utilisateurManager->check_like($fk_id_com, $_SESSION['profil']['id']); */
+        $check = "test";
+        $data_page = [
+            "toto" => $check,
+            "page_css" => ["main_home.css", "livreOr.css"],
+            "view" => "views/Visiteur/livreOr.view.php",
+            "template" => "views/common/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
     public function poster_com($id, $message)
     {
         if (!empty($message)) {
@@ -214,6 +227,18 @@ class UtilisateurController extends MainController
             Toolbox::ajouterMessageAlerte("Le message est vide", Toolbox::COULEUR_ROUGE);
             header("Location: " . URL . "compte/page_poster_commentaire");
         }
+    }
+
+
+    public  function set_like($id_com)
+    {
+        $this->utilisateurManager->ajouter_like($_SESSION['profil']['id'], $id_com);
+        Toolbox::ajouterMessageAlerte("le like est posté", Toolbox::COULEUR_VERTE);
+        header("Location: " . URL . "livreOr");
+        /*       } else {
+            Toolbox::ajouterMessageAlerte("déjà Liké", Toolbox::COULEUR_ROUGE);
+            header("Location: " . URL . "livreOr");
+        } */
     }
 
 

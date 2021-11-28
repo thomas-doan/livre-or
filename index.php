@@ -66,6 +66,8 @@ try {
 
         case "livreOr":
             $visiteurController->livreOr();
+
+
             break;
         case "compte":
             if (!Securite::estConnecte()) {
@@ -79,6 +81,10 @@ try {
             } else {
                 Securite::genererCookieConnexion(); //regénération du cookie
                 switch ($url[1]) {
+                    case "ajout_like_livreOr":
+                        $utilisateurController->set_like($_POST['id_com']);
+                        break;
+
                     case "profil":
                         $utilisateurController->profil();
                         break;

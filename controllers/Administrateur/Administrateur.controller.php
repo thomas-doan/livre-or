@@ -33,7 +33,9 @@ class AdministrateurController extends MainController
 
     public function validation_modificationAdminLogin($login, $newLogin)
     {
-        if ($this->administrateurManager->verifLoginDisponible($newLogin)) {
+
+
+        if ($this->administrateurManager->verifLoginDisponible($newLogin) && !isset($newLogin)) {
             if ($this->administrateurManager->bdModificationAdminLoginUser($login, $newLogin)) {
 
                 /*             $utilisateur = $this->administrateurManager->getUserAdminInformation($newLogin);
@@ -55,8 +57,10 @@ class AdministrateurController extends MainController
  */
             }
         } else {
-            Toolbox::ajouterMessageAlerte("login déjà utilisé", Toolbox::COULEUR_ROUGE);
+            Toolbox::ajouterMessageAlerte("login déjà utilisé ou vide", Toolbox::COULEUR_ROUGE);
         }
+
+
         header("Location: " . URL . "administration/droits");
     }
 
