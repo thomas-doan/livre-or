@@ -26,7 +26,7 @@
             <div class="col-6 col-md">
                 <h5>About</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1 "><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                    <li class="mb-1 "><a class="link-secondary text-decoration-none" href="https://github.com/thomas-doan/livre-or"><i class="fab fa-github"></i></a></li>
                     <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
                     <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
                 </ul>
