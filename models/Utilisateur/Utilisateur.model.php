@@ -193,7 +193,7 @@ class UtilisateurManager extends MainManager
     public function ajouter_like($id_com, $id_user)
     {
 
-        $req = "INSERT INTO Intermediaire_like (fk_id_commentaires, fk_id_utilisateurs) VALUES (:fk_id_commentaires, :fk_id_utilisateurs)";
+        $req = "INSERT INTO Intermediaire_like (fk_id_commentaires, fk_id_utilisateurs, etat_like) VALUES (:fk_id_commentaires, :fk_id_utilisateurs, 2)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":fk_id_commentaires", $id_user, PDO::PARAM_STR);
         $stmt->bindValue(":fk_id_utilisateurs", $id_com, PDO::PARAM_STR);

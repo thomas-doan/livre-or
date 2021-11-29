@@ -1,7 +1,10 @@
 <main>
     <?php
 
-
+    /*     echo "<pre>";
+    var_dump($check_likes);
+    echo "</pre>";
+ */
     ?>
 
     <div class="switch_commentaire">
@@ -44,41 +47,48 @@
                 </div>
                 <div class="info_com">
                     <p><?= $com['commentaire']; ?></p>
-                    <p><?= $com['id']; ?></p>
+
+                    <?php
+
+                    foreach ($res_like as $value) {
+                        if ($com['id'] == $value['fk_id_commentaires']) { ?>
+                            <div>
+                                <p> <i class="fab fa-gratipay"></i> : <?= $value['nbr_likes']; ?></p>
+                            </div>
+
+                    <?php }
+                    } ?>
 
 
                 </div>
-                <?php
+                <div class="btnlikeUnlike">
+                    <?php foreach ($check_likes as $check) {
 
-                foreach ($res_like as $value) {
-                    if ($com['id'] == $value['fk_id_commentaires']) { ?>
-                        <div>
-                            <p> Nombre de Like : <?= $value['nbr_likes']; ?></p>
-                        </div>
+                        if ($check['fk_id_utilisateurs'] == $_SESSION['profil']["id"] && $check['fk_id_commentaires'] == $com['id']) {
+                            $com['id'] ?>
+                            <div>
 
-                <?php }
-                }
-                ?>
-                <div>
+                                <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
 
-                    <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
+                                    <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                                    <button type="submit"><i class="fas fa-thumbs-down"></i></button>
 
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">SUPPRIMER LIKE</button>
-                    </form>
+                                </form>
+                            </div>
+
+                    <?php }
+                    }
+                    ?>
+
+                    <div>
+
+                        <form method="POST" action="<?= URL; ?>compte/ajout_like_livreOr">
+
+                            <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                            <button type="submit"><i class="fas fa-thumbs-up" style="color: green;"></i></button>
+                        </form>
+                    </div>
                 </div>
-
-
-
-                <div>
-
-                    <form method="POST" action="<?= URL; ?>compte/ajout_like_livreOr">
-
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">LIKE</button>
-                    </form>
-                </div>
-
 
             </div>
 
@@ -90,45 +100,49 @@
                 </div>
                 <div class="info_com">
                     <p><?= $com['commentaire']; ?></p>
-                    <p><?= $com['id']; ?></p>
 
+                    <?php
+                    foreach ($res_like as $value) {
+                        if ($com['id'] == $value['fk_id_commentaires']) { ?>
+                            <div>
+                                <p> <i class="fab fa-gratipay"></i> : <?= $value['nbr_likes']; ?></p>
+                            </div>
+
+                    <?php }
+                    } ?>
 
                 </div>
+                <div class="btnlikeUnlike">
 
 
-                <?php
+
+                    <?php foreach ($check_likes as $check) {
+
+                        if ($check['fk_id_utilisateurs'] == $_SESSION['profil']["id"] && $check['fk_id_commentaires'] == $com['id']) {
 
 
-                foreach ($res_like as $value) {
-                    if ($com['id'] == $value['fk_id_commentaires']) { ?>
-                        <div>
-                            <p> Nombre de Like : <?= $value['nbr_likes']; ?></p>
-                        </div>
+                    ?>
+                            <div>
 
-                <?php }
-                }
+                                <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
 
-                ?>
-                <div>
+                                    <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                                    <button type="submit"><i class="fas fa-thumbs-down"></i></button>
+                                </form>
+                            </div>
 
-                    <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
+                    <?php }
+                    } ?>
 
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">SUPPRIMER LIKE</button>
-                    </form>
+                    <div>
+
+                        <form method="POST" action="<?= URL; ?>compte/ajout_like_livreOr">
+
+                            <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                            <button type="submit"><i class="fas fa-thumbs-up" style="color: green;"></i></button>
+                        </form>
+                    </div>
                 </div>
-
-
-
-                <div>
-
-                    <form method="POST" action="<?= URL; ?>compte/ajout_like_livreOr">
-
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">LIKE</button>
-                    </form>
-                </div>
-
 
             </div>
 
@@ -142,18 +156,22 @@
                     <p><?php echo "<b>" . $com['login'] . "</b>" . ' vient de poster le :' . " $date_formate"; ?></p>
                 </div>
                 <div class="info_com">
-                    <p><?= $com['id']; ?></p>
+                    <p><?= $com['commentaire']; ?></p>
+
+
+                    <?php
+
+                    foreach ($res_like as $value) {
+                        if ($com['id'] == $value['fk_id_commentaires']) { ?>
+                            <div>
+                                <p> <i class="fab fa-gratipay"></i> : <?= $value['nbr_likes']; ?></p>
+                            </div>
+
+                    <?php }
+                    } ?>
+
                 </div>
-                <?php
 
-                foreach ($res_like as $value) {
-                    if ($com['id'] == $value['fk_id_commentaires']) { ?>
-                        <div>
-                            <p> Nombre de Like : <?= $value['nbr_likes']; ?></p>
-                        </div>
-
-                <?php }
-                } ?>
 
 
             </div>
