@@ -85,6 +85,11 @@ try {
                         $utilisateurController->set_like($_POST['id_com']);
                         break;
 
+                    case "suppr_like_livreOr":
+                        $utilisateurController->unset_like($_POST['id_com']);
+                        break;
+
+
                     case "profil":
                         $utilisateurController->profil();
                         break;
@@ -144,6 +149,18 @@ try {
                 switch ($url[1]) {
                     case "droits":
                         $administrateurController->droits();
+                        break;
+
+                    case "coms":
+                        $administrateurController->coms();
+                        break;
+
+                    case "validation_modificationCom":
+                        $administrateurController->validation_modificationAdminCom($_POST['comId'], $_POST['modifCom']);
+                        break;
+
+                    case "validation_supprCom":
+                        $administrateurController->validation_modificationSupprAdminCom($_POST['SupprComId']);
                         break;
 
                     case "validation_modificationLogin":

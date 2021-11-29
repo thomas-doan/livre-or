@@ -30,6 +30,21 @@ class AdministrateurController extends MainController
         $this->genererPage($data_page);
     }
 
+    public function coms()
+    {
+        $allComs = $this->administrateurManager->getCommentaire();
+
+        $data_page = [
+            "page_description" => "Gestion des coms",
+            "page_title" => "Gestion des coms",
+            "coms" => $allComs,
+            "view" => "views/Administrateur/coms.view.php",
+            "template" => "views/common/template.php"
+        ];
+        $this->genererPage($data_page);
+    }
+
+
 
     public function validation_modificationAdminLogin($login, $newLogin)
     {
@@ -62,6 +77,28 @@ class AdministrateurController extends MainController
 
 
         header("Location: " . URL . "administration/droits");
+    }
+
+    public function validation_modificationAdminCom($comId, $modifCom)
+    {
+
+        if ($this->administrateurManager->bdModificationAdminCom($comId, $modifCom)) {
+
+            Toolbox::ajouterMessageAlerte("La modification est effectuée", Toolbox::COULEUR_VERTE);
+        } else {
+            Toolbox::ajouterMessageAlerte("Aucune modification effectuée", Toolbox::COULEUR_ROUGE);
+        }
+        header("Location: " . URL . "administration/coms");
+    }
+
+    public function validation_modificationSupprAdminCom($SupprComId)
+    {
+
+        if ($this->administrateurManager->bdModificationAdminSupprCom($SupprComId)) {
+
+            Toolbox::ajouterMessageAlerte("La suppression est effectuée", Toolbox::COULEUR_VERTE);
+        }
+        header("Location: " . URL . "administration/coms");
     }
 
 

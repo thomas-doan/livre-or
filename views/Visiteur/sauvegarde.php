@@ -56,19 +56,25 @@
                             <p> Nombre de Like : <?= $value['nbr_likes']; ?></p>
                         </div>
 
+                    <?php }
+                }
+
+                foreach ($check_likes as $check) {
+
+                    if ($check['fk_id_utilisateurs'] == isset($_SESSION['profil']["id"]) && $check['fk_id_commentaires'] == $com['id']) {
+                        $com['id'] ?>
+                        <div>
+
+                            <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
+
+                                <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                                <button type="submit">SUPPRIMER LIKE</button>
+                            </form>
+                        </div>
+
                 <?php }
                 }
                 ?>
-                <div>
-
-                    <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
-
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">SUPPRIMER LIKE</button>
-                    </form>
-                </div>
-
-
 
                 <div>
 
@@ -105,20 +111,23 @@
                             <p> Nombre de Like : <?= $value['nbr_likes']; ?></p>
                         </div>
 
-                <?php }
+                    <?php }
                 }
 
-                ?>
-                <div>
+                foreach ($check_likes as $check) {
 
-                    <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
+                    if ($check['fk_id_utilisateurs'] == $_SESSION['profil']["id"] && $check['fk_id_commentaires'] == $com['id']) { ?>
+                        <div>
 
-                        <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
-                        <button type="submit">SUPPRIMER LIKE</button>
-                    </form>
-                </div>
+                            <form method="POST" action="<?= URL; ?>compte/suppr_like_livreOr">
 
+                                <input type="hidden" name="id_com" value="<?= $com['id'] ?>" />
+                                <button type="submit">SUPPRIMER LIKE</button>
+                            </form>
+                        </div>
 
+                <?php }
+                } ?>
 
                 <div>
 

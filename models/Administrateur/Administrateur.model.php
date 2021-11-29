@@ -15,6 +15,16 @@ class AdministrateurManager extends MainManager
         return $datas;
     }
 
+    public function getCommentaire()
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM commentaires ORDER BY date DESC");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $datas;
+    }
+
     public function getUserAdminInformation($login)
     {
         $req = "SELECT * FROM utilisateurs WHERE login = :login";
@@ -31,6 +41,31 @@ class AdministrateurManager extends MainManager
         $utilisateur = $this->getUserAdminInformation($login);
         return empty($utilisateur);
     }
+
+    public function bdModificationAdminCom($comId, $modifCom)
+    {
+        $req = "UPDATE commentaires set commentaire = :commentaire WHERE id = :id ";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $comId, PDO::PARAM_STR);
+        $stmt->bindValue(":commentaire", $modifCom, PDO::PARAM_STR);
+        $stmt->execute();
+        $estModifier = $stmt;
+        $stmt->closeCursor();
+        return $estModifier;
+    }
+
+    public function bdModificationAdminSupprCom($SupprComId)
+    {
+        $req = "DELETE FROM commentaires WHERE id = :id ";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $SupprComId, PDO::PARAM_STR);
+        $stmt->execute();
+        $comSuppr = $stmt;
+        $stmt->closeCursor();
+        return $comSuppr;
+    }
+
+
 
     public function bdModificationAdminLoginUser($login, $newLogin)
     {

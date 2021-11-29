@@ -232,14 +232,45 @@ class UtilisateurController extends MainController
 
     public  function set_like($id_com)
     {
-        $this->utilisateurManager->ajouter_like($_SESSION['profil']['id'], $id_com);
-        Toolbox::ajouterMessageAlerte("le like est posté", Toolbox::COULEUR_VERTE);
-        header("Location: " . URL . "livreOr");
-        /*       } else {
+        $test = $this->utilisateurManager->check_like($id_com, $_SESSION['profil']['id']);
+        if ($test == FALSE) {
+            $this->utilisateurManager->ajouter_like($_SESSION['profil']['id'], $id_com);
+            Toolbox::ajouterMessageAlerte("le like est posté", Toolbox::COULEUR_VERTE);
+            header("Location: " . URL . "livreOr");
+        } else {
             Toolbox::ajouterMessageAlerte("déjà Liké", Toolbox::COULEUR_ROUGE);
             header("Location: " . URL . "livreOr");
-        } */
+        }
     }
+
+    public  function unset_like($id_com)
+    {
+        $test = $this->utilisateurManager->check_like($id_com, $_SESSION['profil']['id']);
+        if ($test == FALSE) {
+            Toolbox::ajouterMessageAlerte("votre like est déjà supprimé", Toolbox::COULEUR_ROUGE);
+            header("Location: " . URL . "livreOr");
+        } else {
+
+            $this->utilisateurManager->suppr_like($_SESSION['profil']['id'], $id_com);
+            Toolbox::ajouterMessageAlerte("le like est supprimé", Toolbox::COULEUR_VERTE);
+            header("Location: " . URL . "livreOr");
+        }
+    }
+
+
+    /*     public  function unset_like($id_com)
+    {
+        $datas = $this->utilisateurManager->check_like($id_com, $_SESSION['profil']['id'],);
+        $data_page = [
+            "page_description" => "test",
+            "page_title" => "test",
+            "utilisateur" => $datas,
+            "view" => "views/Utilisateur/ajout_like_livreOr.view.php",
+            "template" => "views/common/template.php"
+        ];
+        $this->genererPage($data_page);
+    } */
+
 
 
     public function pageErreur($msg)

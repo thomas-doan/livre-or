@@ -25,14 +25,29 @@ SELECT id FROM commentaires) GROUP BY fk_id_commentaires");
         return $datas_likes;
     }
 
+
     public function check_like()
     {
 
-        $req = $this->getBdd()->query("SELECT * FROM intermediaire_like");
+        $req = $this->getBdd()->prepare("SELECT * FROM intermediaire_like");
         $req->execute();
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
-        return $resultat;
+
+        return $datas;
+    }
+
+    public function check_like2($fk_id_com, $fk_id_user)
+    {
+
+        $req = "SELECT * FROM intermediaire_like WHERE (fk_id_commentaires =: fk_id_commentaires) AND ()fk_id_utilisateurs =: fk_id_utilisateurs";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":fk_id_commentaires", $fk_id_com, PDO::PARAM_STR);
+        $stmt->bindValue(":fk_id_utilisateurs", $fk_id_user, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return count($resultat);
     }
 }
